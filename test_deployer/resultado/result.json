@@ -1,0 +1,378 @@
+{
+    "streetlight-cep": {
+        "description": "DEPLOYER:streetlight:1.9.0:streetlight-cep",
+        "notification": {
+            "attrs": [],
+            "attrsFormat": "normalized",
+            "http": {
+                "url": "http://iot-perseo:9090/notices"
+            },
+            "onlyChangedAttrs": false
+        },
+        "status": "active",
+        "subject": {
+            "condition": {
+                "attrs": []
+            },
+            "entities": [
+                {
+                    "idPattern": ".*",
+                    "type": "Streetlight"
+                }
+            ]
+        }
+    },
+    "streetlight-commands-historic": {
+        "description": "DEPLOYER:streetlight:1.9.0:streetlight-commands-historic",
+        "notification": {
+            "attrs": [
+                "setIlluminanceLevel",
+                "setIlluminanceLevel_info",
+                "setIlluminanceLevel_status",
+                "dateLastCommanded",
+                "lastCommander",
+                "powerState",
+                "workingMode",
+                "commandTimeinstant"
+            ],
+            "attrsFormat": "normalized",
+            "httpCustom": {
+                "headers": {
+                    "Fiware-Servicepath": "/lightningcommands"
+                },
+                "url": "http://iot-cygnus:5057/notify"
+            },
+            "onlyChangedAttrs": false
+        },
+        "status": "active",
+        "subject": {
+            "condition": {
+                "attrs": [
+                    "commandTimeinstant"
+                ],
+                "expression": {
+                    "q": "enableHistoricCommand:'true'"
+                }
+            },
+            "entities": [
+                {
+                    "idPattern": ".*",
+                    "type": "Streetlight"
+                }
+            ]
+        }
+    },
+    "streetlight-historic": {
+        "description": "DEPLOYER:streetlight:1.9.0:streetlight-historic",
+        "notification": {
+            "attrs": [
+                "TimeInstant",
+                "activePower",
+                "address",
+                "controllingMethod",
+                "dateLastSwitchingOff",
+                "dateLastSwitchingOn",
+                "dateMeteringStarted",
+                "dateServiceStarted",
+                "delay"
+            ],
+            "attrsFormat": "normalized",
+            "http": {
+                "url": "http://iot-cygnus:5057/notify"
+            },
+            "onlyChangedAttrs": false
+        },
+        "status": "active",
+        "subject": {
+            "condition": {
+                "attrs": [
+                    "TimeInstant"
+                ]
+            },
+            "entities": [
+                {
+                    "idPattern": ".*",
+                    "type": "Streetlight"
+                }
+            ]
+        }
+    },
+    "streetlight-lastdata": {
+        "description": "DEPLOYER:streetlight:1.9.0:streetlight-lastdata",
+        "notification": {
+            "attrs": [
+                "TimeInstant",
+                "activePower",
+                "address",
+                "controllingMethod",
+                "dateLastSwitchingOff",
+                "dateLastSwitchingOn",
+                "dateMeteringStarted",
+                "dateServiceStarted",
+                "delay"
+            ],
+            "attrsFormat": "normalized",
+            "http": {
+                "url": "http://iot-cygnus:5059/notify"
+            },
+            "onlyChangedAttrs": false
+        },
+        "status": "active",
+        "subject": {
+            "condition": {
+                "attrs": [
+                    "TimeInstant"
+                ]
+            },
+            "entities": [
+                {
+                    "idPattern": ".*",
+                    "type": "Streetlight"
+                }
+            ]
+        }
+    },
+    "streetlightcontrolcabinet-cep-cmdilluminancelevel": {
+        "description": "DEPLOYER:streetlight:1.9.0:streetlightcontrolcabinet-cep-cmdilluminancelevel",
+        "notification": {
+            "attrs": [
+                "cmdIlluminanceLevel"
+            ],
+            "attrsFormat": "normalized",
+            "http": {
+                "url": "http://iot-perseo:9090/notices"
+            },
+            "onlyChangedAttrs": false
+        },
+        "status": "active",
+        "subject": {
+            "condition": {
+                "attrs": [
+                    "cmdIlluminanceLevel"
+                ]
+            },
+            "entities": [
+                {
+                    "idPattern": ".*",
+                    "type": "StreetlightControlCabinet"
+                }
+            ]
+        }
+    },
+    "streetlightcontrolcabinet-cep-cmdpowerstate": {
+        "description": "DEPLOYER:streetlight:1.9.0:streetlightcontrolcabinet-cep-cmdpowerstate",
+        "notification": {
+            "attrs": [
+                "cmdPowerState"
+            ],
+            "attrsFormat": "normalized",
+            "http": {
+                "url": "http://iot-perseo:9090/notices"
+            },
+            "onlyChangedAttrs": false
+        },
+        "status": "active",
+        "subject": {
+            "condition": {
+                "attrs": [
+                    "cmdPowerState"
+                ]
+            },
+            "entities": [
+                {
+                    "idPattern": ".*",
+                    "type": "StreetlightControlCabinet"
+                }
+            ]
+        }
+    },
+    "streetlightcontrolcabinet-cep-cmdworkingmode": {
+        "description": "DEPLOYER:streetlight:1.9.0:streetlightcontrolcabinet-cep-cmdworkingmode",
+        "notification": {
+            "attrs": [
+                "cmdWorkingMode"
+            ],
+            "attrsFormat": "normalized",
+            "http": {
+                "url": "http://iot-perseo:9090/notices"
+            },
+            "onlyChangedAttrs": false
+        },
+        "status": "active",
+        "subject": {
+            "condition": {
+                "attrs": [
+                    "cmdWorkingMode"
+                ]
+            },
+            "entities": [
+                {
+                    "idPattern": ".*",
+                    "type": "StreetlightControlCabinet"
+                }
+            ]
+        }
+    },
+    "streetlightcontrolcabinet-historic": {
+        "description": "DEPLOYER:streetlight:1.9.0:streetlightcontrolcabinet-historic",
+        "notification": {
+            "attrs": [
+                "TimeInstant",
+                "activePowerR",
+                "activePowerS",
+                "activePowerT",
+                "address",
+                "brandName",
+                "cosPhi",
+                "dateLastProgramming",
+                "dateLastSwitchingOff",
+                "dateLastSwitchingOn",
+                "dateMeteringStarted",
+                "dateServiceStarted",
+                "energyConsumed",
+                "energyCost"
+            ],
+            "attrsFormat": "normalized",
+            "http": {
+                "url": "http://iot-cygnus:5057/notify"
+            },
+            "onlyChangedAttrs": false
+        },
+        "status": "active",
+        "subject": {
+            "condition": {
+                "attrs": [
+                    "TimeInstant"
+                ]
+            },
+            "entities": [
+                {
+                    "idPattern": ".*",
+                    "type": "StreetlightControlCabinet"
+                }
+            ]
+        }
+    },
+    "streetlightcontrolcabinet-lastdata": {
+        "description": "DEPLOYER:streetlight:1.9.0:streetlightcontrolcabinet-lastdata",
+        "notification": {
+            "attrs": [
+                "TimeInstant",
+                "activePowerR",
+                "activePowerS",
+                "activePowerT",
+                "address",
+                "brandName",
+                "cosPhi",
+                "dateLastProgramming",
+                "dateLastSwitchingOff",
+                "dateLastSwitchingOn",
+                "dateMeteringStarted",
+                "dateServiceStarted",
+                "energyConsumed",
+                "energyCost",
+                "frequency"
+            ],
+            "attrsFormat": "normalized",
+            "http": {
+                "url": "http://iot-cygnus:5059/notify"
+            },
+            "onlyChangedAttrs": false
+        },
+        "status": "active",
+        "subject": {
+            "condition": {
+                "attrs": [
+                    "TimeInstant"
+                ]
+            },
+            "entities": [
+                {
+                    "idPattern": ".*",
+                    "type": "StreetlightControlCabinet"
+                }
+            ]
+        }
+    },
+    "streetlightgroup-cep-cmdilluminancelevel": {
+        "description": "DEPLOYER:streetlight:1.9.0:streetlightgroup-cep-cmdilluminancelevel",
+        "notification": {
+            "attrs": [
+                "cmdIlluminanceLevel"
+            ],
+            "attrsFormat": "normalized",
+            "http": {
+                "url": "http://iot-perseo:9090/notices"
+            },
+            "onlyChangedAttrs": false
+        },
+        "status": "active",
+        "subject": {
+            "condition": {
+                "attrs": [
+                    "cmdIlluminanceLevel"
+                ]
+            },
+            "entities": [
+                {
+                    "idPattern": ".*",
+                    "type": "StreetlightGroup"
+                }
+            ]
+        }
+    },
+    "streetlightzone-cep-cmdilluminancelevel": {
+        "description": "DEPLOYER:streetlight:1.9.0:streetlightzone-cep-cmdilluminancelevel",
+        "notification": {
+            "attrs": [
+                "cmdIlluminanceLevel"
+            ],
+            "attrsFormat": "normalized",
+            "http": {
+                "url": "http://iot-perseo:9090/notices"
+            },
+            "onlyChangedAttrs": false
+        },
+        "status": "active",
+        "subject": {
+            "condition": {
+                "attrs": [
+                    "cmdIlluminanceLevel"
+                ]
+            },
+            "entities": [
+                {
+                    "idPattern": ".*",
+                    "type": "StreetlightZone"
+                }
+            ]
+        }
+    },
+    "streetlightzone-cep-cmdworkingmode": {
+        "description": "DEPLOYER:streetlight:1.9.0:streetlightzone-cep-cmdworkingmode",
+        "notification": {
+            "attrs": [
+                "cmdWorkingMode"
+            ],
+            "attrsFormat": "normalized",
+            "http": {
+                "url": "http://iot-perseo:9090/notices"
+            },
+            "onlyChangedAttrs": false
+        },
+        "status": "active",
+        "subject": {
+            "condition": {
+                "attrs": [
+                    "cmdWorkingMode"
+                ]
+            },
+            "entities": [
+                {
+                    "idPattern": ".*",
+                    "type": "StreetlightZone"
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,398 @@
+{
+  "meta": {
+    "name": "streetlight",
+    "version": "1.9.0"
+  },
+
+  "ddls": {
+    "sources": {
+      "base": {
+        "path": "model/db",
+        "files": ["ddls.sql"],
+        "weight": 0
+      }
+    },
+    "variables": {
+      "duration": "${lastdata_duration}"
+    }
+  },
+
+  "subscriptions": {
+
+    "streetlight-historic": {
+      "status": "active",
+      "subject": {
+        "entities": [
+          {
+            "idPattern": ".*",
+            "type": "Streetlight"
+          }
+        ],
+        "condition": {
+          "attrs": [
+            "TimeInstant"
+          ]
+        }
+      },
+      "notification": {
+        "http": {
+          "url": "HISTORIC"
+        },
+        "attrs": [
+          "TimeInstant",
+          "activePower",
+          "address",
+          "controllingMethod",
+          "dateLastSwitchingOff",
+          "dateLastSwitchingOn",
+          "dateMeteringStarted",
+          "dateServiceStarted",
+          "delay"
+        ],
+        "onlyChangedAttrs": false,
+        "attrsFormat": "normalized"
+      }
+    },
+
+    "streetlightcontrolcabinet-historic": {
+      "status": "active",
+      "subject": {
+        "entities": [
+          {
+            "idPattern": ".*",
+            "type": "StreetlightControlCabinet"
+          }
+        ],
+        "condition": {
+          "attrs": [
+            "TimeInstant"
+          ]
+        }
+      },
+      "notification": {
+        "http": {
+          "url": "HISTORIC"
+        },
+        "attrs": [
+          "TimeInstant",
+          "activePowerR",
+          "activePowerS",
+          "activePowerT",
+          "address",
+          "brandName",
+          "cosPhi",
+          "dateLastProgramming",
+          "dateLastSwitchingOff",
+          "dateLastSwitchingOn",
+          "dateMeteringStarted",
+          "dateServiceStarted",
+          "energyConsumed",
+          "energyCost"
+        ],
+        "onlyChangedAttrs": false,
+        "attrsFormat": "normalized"
+      }
+    },
+
+    "streetlight-cep": {
+      "status": "active",
+      "subject": {
+        "entities": [
+          {
+            "idPattern": ".*",
+            "type": "Streetlight"
+          }
+        ],
+        "condition": {
+          "attrs": []
+        }
+      },
+      "notification": {
+        "http": {
+          "url": "RULES"
+        },
+        "attrs": [],
+        "onlyChangedAttrs": false,
+        "attrsFormat": "normalized"
+      }
+    },
+
+    "streetlight-commands-historic": {
+      "status": "active",
+      "subject": {
+        "entities": [
+          {
+            "idPattern": ".*",
+            "type": "Streetlight"
+          }
+        ],
+        "condition": {
+          "attrs": [
+            "commandTimeinstant"
+          ],
+          "expression": {
+            "q": "enableHistoricCommand:'true'"
+          }
+        }
+      },
+      "notification": {
+        "httpCustom": {
+          "url": "HISTORIC",
+          "headers": {
+            "Fiware-Servicepath": "${servicepath_commands}"
+          }
+        },
+        "attrs": [
+          "setIlluminanceLevel",
+          "setIlluminanceLevel_info",
+          "setIlluminanceLevel_status",
+          "dateLastCommanded",
+          "lastCommander",
+          "powerState",
+          "workingMode",
+          "commandTimeinstant"
+        ],
+        "onlyChangedAttrs": false,
+        "attrsFormat": "normalized"
+      }
+    },
+
+    "streetlightcontrolcabinet-cep-cmdilluminancelevel": {
+      "status": "active",
+      "subject": {
+        "entities": [
+          {
+            "idPattern": ".*",
+            "type": "StreetlightControlCabinet"
+          }
+        ],
+        "condition": {
+          "attrs": [
+            "cmdIlluminanceLevel"
+          ]
+        }
+      },
+      "notification": {
+        "http": {
+          "url": "RULES"
+        },
+        "attrs": [
+          "cmdIlluminanceLevel"
+        ],
+        "onlyChangedAttrs": false,
+        "attrsFormat": "normalized"
+      }
+    },
+
+    "streetlightcontrolcabinet-cep-cmdworkingmode": {
+      "status": "active",
+      "subject": {
+        "entities": [
+          {
+            "idPattern": ".*",
+            "type": "StreetlightControlCabinet"
+          }
+        ],
+        "condition": {
+          "attrs": [
+            "cmdWorkingMode"
+          ]
+        }
+      },
+      "notification": {
+        "http": {
+          "url": "RULES"
+        },
+        "attrs": [
+          "cmdWorkingMode"
+        ],
+        "onlyChangedAttrs": false,
+        "attrsFormat": "normalized"
+      }
+    },
+
+    "streetlightcontrolcabinet-cep-cmdpowerstate": {
+      "status": "active",
+      "subject": {
+        "entities": [
+          {
+            "idPattern": ".*",
+            "type": "StreetlightControlCabinet"
+          }
+        ],
+        "condition": {
+          "attrs": [
+            "cmdPowerState"
+          ]
+        }
+      },
+      "notification": {
+        "http": {
+          "url": "RULES"
+        },
+        "attrs": [
+          "cmdPowerState"
+        ],
+        "onlyChangedAttrs": false,
+        "attrsFormat": "normalized"
+      }
+    },
+
+    "streetlightzone-cep-cmdilluminancelevel": {
+      "status": "active",
+      "subject": {
+        "entities": [
+          {
+            "idPattern": ".*",
+            "type": "StreetlightZone"
+          }
+        ],
+        "condition": {
+          "attrs": [
+            "cmdIlluminanceLevel"
+          ]
+        }
+      },
+      "notification": {
+        "http": {
+          "url": "RULES"
+        },
+        "attrs": [
+          "cmdIlluminanceLevel"
+        ],
+        "onlyChangedAttrs": false,
+        "attrsFormat": "normalized"
+      }
+    },
+
+    "streetlightzone-cep-cmdworkingmode": {
+      "status": "active",
+      "subject": {
+        "entities": [
+          {
+            "idPattern": ".*",
+            "type": "StreetlightZone"
+          }
+        ],
+        "condition": {
+          "attrs": [
+            "cmdWorkingMode"
+          ]
+        }
+      },
+      "notification": {
+        "http": {
+          "url": "RULES"
+        },
+        "attrs": [
+          "cmdWorkingMode"
+        ],
+        "onlyChangedAttrs": false,
+        "attrsFormat": "normalized"
+      }
+   },
+
+   "streetlight-lastdata": {
+      "status": "active",
+      "subject": {
+        "entities": [
+          {
+            "idPattern": ".*",
+            "type": "Streetlight"
+          }
+        ],
+        "condition": {
+          "attrs": [
+            "TimeInstant"
+          ]
+        }
+      },
+      "notification": {
+        "http": {
+          "url": "LASTDATA"
+        },
+        "attrs": [
+          "TimeInstant",
+          "activePower",
+          "address",
+          "controllingMethod",
+          "dateLastSwitchingOff",
+          "dateLastSwitchingOn",
+          "dateMeteringStarted",
+          "dateServiceStarted",
+          "delay"
+        ],
+        "onlyChangedAttrs": false,
+        "attrsFormat": "normalized"
+      }
+    },
+
+    "streetlightcontrolcabinet-lastdata": {
+      "status": "active",
+      "subject": {
+        "entities": [
+          {
+            "idPattern": ".*",
+            "type": "StreetlightControlCabinet"
+          }
+        ],
+        "condition": {
+          "attrs": [
+            "TimeInstant"
+          ]
+        }
+      },
+      "notification": {
+        "http": {
+          "url": "LASTDATA"
+        },
+        "attrs": [
+          "TimeInstant",
+          "activePowerR",
+          "activePowerS",
+          "activePowerT",
+          "address",
+          "brandName",
+          "cosPhi",
+          "dateLastProgramming",
+          "dateLastSwitchingOff",
+          "dateLastSwitchingOn",
+          "dateMeteringStarted",
+          "dateServiceStarted",
+          "energyConsumed",
+          "energyCost",
+          "frequency"
+        ],
+        "onlyChangedAttrs": false,
+        "attrsFormat": "normalized"
+      }
+    },
+
+    "streetlightgroup-cep-cmdilluminancelevel": {
+      "status": "active",
+      "subject": {
+        "entities": [
+          {
+            "idPattern": ".*",
+            "type": "StreetlightGroup"
+          }
+        ],
+        "condition": {
+          "attrs": [
+            "cmdIlluminanceLevel"
+          ]
+        }
+      },
+      "notification": {
+        "http": {
+          "url": "RULES"
+        },
+        "attrs": [
+          "cmdIlluminanceLevel"
+        ],
+        "onlyChangedAttrs": false,
+        "attrsFormat": "normalized"
+      }
+    }
+  }
+}

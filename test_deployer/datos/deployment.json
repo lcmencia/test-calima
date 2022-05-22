@@ -1,0 +1,18 @@
+{
+    "deployment": {
+        "subservice": "/alumbrado",
+        "variables": {
+            "servicepath_commands": "/lightningcommands",
+            "lastdata_duration": "20 days"
+        },
+        "sources": {
+            "manifests": {
+                "files": [ "manifest.json" ]
+            },
+            "environment": {
+                "path": "entorno",
+                "files": [ "environment.json" ]
+            }
+        }
+    }
+}

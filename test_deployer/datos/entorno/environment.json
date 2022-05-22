@@ -1,0 +1,19 @@
+{
+    "environment": {
+        "service":  "urbodeployer",
+        "database": "urbodeployer",
+        "databaseSchemas": {
+            "DEFAULT": "urbodeployer"
+        },
+        "api": {
+            "postgis":  "host=iot.lab.urbo2.es port=5432",
+            "orion":    "https://iot.lab.urbo2.es:1026",
+            "keystone": "http://iot.lab.urbo2.es:5001"
+        },
+        "notificationEndpoints": {
+            "HISTORIC": "http://iot-cygnus:5057/notify",
+            "LASTDATA":  "http://iot-cygnus:5059/notify",
+            "RULES": "https://iot-perseo:9090/notices"
+        }
+    }
+}
