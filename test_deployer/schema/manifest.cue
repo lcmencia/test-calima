@@ -30,8 +30,11 @@ meta: {
     http?: {
       url: "LASTDATA" | "HISTORIC" | "RULES" | string
     }
-    httpCustom?: {
-      url: "LASTDATA" | "HISTORIC" | "RULES" | string
+    httpCustom?: { 
+      url: "LASTDATA" | "HISTORIC" | "RULES" | string 
+      headers: {
+        Fiware-Servicepath: _
+      }
     }
   }
 }

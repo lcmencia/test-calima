@@ -12,6 +12,9 @@
             "environment": {
                 "path": "entorno",
                 "files": [ "environment.json" ]
+            },
+            "deployment": {
+                "files": [ "deployment.json" ]
             }
         }
     }

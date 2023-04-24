@@ -11,6 +11,7 @@ deployment: {
     subservice: string // Nombre del subservicio (Fiware-Servicepath)
     // Diccionario para variables genéricas
     variables: {
-        [string]: int
+        servicepath_commands: string
+        lastdata_duration: string
     }
 }

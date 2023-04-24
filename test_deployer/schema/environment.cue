@@ -8,7 +8,7 @@ environment: {
   // acceso a APIs
   api: {
     postgis:  string & =~ "host=.* port=.*" // formato reconocido por psycopg2
-    orion:    string & =~ "http://.*"
+    orion:    string & =~ "https://.*"
     keystone: string & =~ "http://.*"
   }
 
@@ -16,7 +16,7 @@ environment: {
   notificationEndpoints: {
     HISTORIC: string & =~ "http://.*"   // suscripciones a cygnus - sink histórico
     LASTDATA?: string & =~ "http://.*"  // suscripciones a cygnus - sink lastdata (opcional)
-    RULES: string & =~ "http://.*"      // suscripciones a perseo
+    RULES: string & =~ "https://.*"      // suscripciones a perseo
   }
 
   // Otros endpoints custom
